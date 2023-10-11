@@ -1,0 +1,23 @@
+SELECT s1.customer_id, m.product_name,s1.order_date
+FROM 
+sales as s1
+JOIN
+(SELECT s.customer_id, max(s.order_date) as max_date
+FROM 
+sales as s
+RIGHT JOIN
+members as m
+ON s.customer_id= m.customer_id
+WHERE
+m.join_date>s.order_date
+GROUP BY
+s.customer_id) as f
+ON
+s1.customer_id=f.customer_id and 
+s1.order_date=f.max_date
+JOIN menu m
+ON
+s1.product_id=m.product_id
+ORDER BY
+s1.customer_id
+;
