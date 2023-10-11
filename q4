@@ -1,0 +1,10 @@
+SELECT m.product_name, count(s.product_id) as count_num 
+FROM
+sales s
+JOIN 
+menu m
+ON
+s.product_id=m.product_id
+GROUP BY m.product_name
+ORDER BY count_num DESC 
+LIMIT 1;
