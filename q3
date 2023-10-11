@@ -1,0 +1,8 @@
+SELECT s.customer_id, m.product_name AS first_purchase_item
+FROM (
+  SELECT customer_id, MIN(order_date) AS first_purchase_date
+  FROM sales
+  GROUP BY customer_id
+) AS f
+JOIN sales AS s ON f.customer_id = s.customer_id AND f.first_purchase_date = s.order_date
+JOIN menu AS m ON s.product_id = m.product_id;
