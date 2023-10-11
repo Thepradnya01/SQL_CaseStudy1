@@ -1,4 +1,4 @@
-SELECT m.product_name, count(s.product_id) as count_num 
+SELECT m.product_name, count(s.product_id) as number_of_times
 FROM
 sales s
 JOIN 
