@@ -1,0 +1,13 @@
+SELECT 
+s.customer_id, count(*), sum(mn.price)
+FROM
+sales s
+INNER JOIN
+members m
+ON s.customer_id= m.customer_id
+INNER JOIN
+menu mn 
+ON s.product_id=mn.product_id
+WHERE m.join_date>s.order_date
+GROUP BY
+s.customer_id;
